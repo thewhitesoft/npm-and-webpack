@@ -1,4 +1,0 @@
-.hello {
-    composes: hello from "../global.css";
-    font-size: 64px;
-}

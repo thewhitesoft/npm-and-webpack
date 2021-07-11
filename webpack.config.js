@@ -20,17 +20,7 @@ module.exports = (env, argv) => ({
             },
             {
                 test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-modules-typescript-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                            modules: true
-                        }
-                    }
-                ],
+                use: ["style-loader", 'css-loader'],
             },
         ],
     },
@@ -43,10 +33,7 @@ module.exports = (env, argv) => ({
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html')
-        }),
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].[fullhash].css',
-        }),
+        })
     ],
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
