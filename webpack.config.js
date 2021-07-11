@@ -2,8 +2,12 @@ const webpack = require("webpack")
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => ({
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
+    },
     entry: {
         app: path.resolve(__dirname, 'src', 'app.tsx')
     },
@@ -13,6 +17,20 @@ module.exports = (env, argv) => ({
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-modules-typescript-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: true
+                        }
+                    }
+                ],
             },
         ],
     },
@@ -25,7 +43,10 @@ module.exports = (env, argv) => ({
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html')
-        })
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].[fullhash].css',
+        }),
     ],
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
