@@ -30,10 +30,7 @@ module.exports = (env, argv) => ({
                 }
             },{
                 test: /\.(svg)$/,
-                use: "react-svg-loader",
-                generator: {
-                    filename: 'assets/images/[hash][ext][query]'
-                }
+                use: "react-svg-loader"
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -49,9 +46,9 @@ module.exports = (env, argv) => ({
         path: path.resolve(__dirname, 'dist'),
         publicPath: "/",
         assetModuleFilename: 'assets/[hash][ext][query]',
+        clean: true
     },
     plugins: [
-        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html')
         }),
