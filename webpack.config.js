@@ -20,7 +20,7 @@ module.exports = (env, argv) => ({
             },
             {
                 test: /\.css$/,
-                use: ["style-loader", 'css-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
         ],
     },
@@ -33,6 +33,9 @@ module.exports = (env, argv) => ({
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html')
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].[contenthash].css',
         })
     ],
     devServer: {
