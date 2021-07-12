@@ -28,6 +28,12 @@ module.exports = (env, argv) => ({
                 generator: {
                     filename: 'assets/images/[hash][ext][query]'
                 }
+            },{
+                test: /\.(svg)$/,
+                use: "react-svg-loader",
+                generator: {
+                    filename: 'assets/images/[hash][ext][query]'
+                }
             },
         ],
     },
