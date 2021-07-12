@@ -2,4 +2,13 @@ $fontSize: 64px;
 
 .hello {
     font-size: $fontSize;
+
+    &::after {
+        display: inline-block;
+        background-image: url("Hi cat.png");
+        content: ' ';
+        height: 100px;
+        width: 100px;
+        background-size: contain;
+    }
 }

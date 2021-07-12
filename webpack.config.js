@@ -22,12 +22,20 @@ module.exports = (env, argv) => ({
                 test: /\.s?css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'assets/images/[hash][ext][query]'
+                }
+            },
         ],
     },
     output: {
         filename: "js/[name].[fullhash].js",
         path: path.resolve(__dirname, 'dist'),
-        publicPath: "/"
+        publicPath: "/",
+        assetModuleFilename: 'assets/[hash][ext][query]',
     },
     plugins: [
         new CleanWebpackPlugin(),
