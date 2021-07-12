@@ -19,8 +19,8 @@ module.exports = (env, argv) => ({
                 exclude: /node_modules/,
             },
             {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                test: /\.s?css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
         ],
     },
@@ -38,6 +38,12 @@ module.exports = (env, argv) => ({
             filename: 'css/[name].[contenthash].css',
         })
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+        runtimeChunk: true,
+    },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
         compress: true,

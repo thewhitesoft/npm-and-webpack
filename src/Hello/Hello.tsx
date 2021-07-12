@@ -1,5 +1,5 @@
 import * as React from "react";
-import './hello.css';
+import './hello.scss';
 
 export default class Hello extends React.Component {
     render() {
