@@ -59,8 +59,15 @@ module.exports = (env, argv) => ({
     optimization: {
         splitChunks: {
             chunks: 'all',
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
+            },
         },
-        runtimeChunk: true,
+        runtimeChunk: 'single',
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
